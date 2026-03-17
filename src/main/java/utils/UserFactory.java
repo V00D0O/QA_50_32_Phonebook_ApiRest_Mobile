@@ -21,7 +21,7 @@ public class UserFactory {
 
     public static User positiveUser(){
         User user = new User(faker.internet().emailAddress(),
-                "Qwerty345!");
+                "Marat116!");
         return user;
     }
 }
