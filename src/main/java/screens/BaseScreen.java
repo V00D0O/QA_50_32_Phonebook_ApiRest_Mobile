@@ -12,25 +12,19 @@ import java.time.Duration;
 public class BaseScreen {
     protected static AppiumDriver driver;
 
-    public BaseScreen(AppiumDriver driver){
+    public BaseScreen(AppiumDriver driver) {
         BaseScreen.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver,
                 Duration.ofSeconds(15)), this);
-
     }
 
-    public boolean isTextInElementPresent(WebElement element, String text, int time){
+    public boolean isTextInElementPresent(WebElement element, String text, int time) {
         return new WebDriverWait(driver, Duration.ofSeconds(time))
                 .until(ExpectedConditions.textToBePresentInElement(element, text));
     }
 
-    public static void pause(int time)
-    {
-        try {
-            Thread.sleep(time * 1000l);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+    public boolean isElementPresent(WebElement element, int time) {
+        return new WebDriverWait(driver, Duration.ofSeconds(time))
+                .until(ExpectedConditions.visibilityOf(element)).isDisplayed();
     }
-
 }
